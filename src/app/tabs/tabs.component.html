@@ -1,3 +1,15 @@
-<p>
-  tabs works!
-</p>
+<div>
+    <ul class="nav nav-tabs">
+        <li role="presentation" [ngClass]="{active: chosenList === 'all'}">
+            <a (click)="onChoose('all')" class="link">All</a>
+        </li>
+        <li role="presentation" [ngClass]="{active: chosenList === 'light'}">
+            <a (click)="onChoose('light')" class="link">Light</a>
+        </li>
+        <li role="presentation" [ngClass]="{active: chosenList === 'dark'}">
+            <a (click)="onChoose('dark')" class="link">Dark</a>
+        </li>
+    </ul>
+    <br>
+    <app-list [characters]="getCharacters()" (sideAssigned)="onSideAssigned($event)"></app-list>
+</div>

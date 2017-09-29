@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.css']
+    selector: 'app-item',
+    templateUrl: './item.component.html',
+    styleUrls: ['./item.component.css']
 })
 export class ItemComponent implements OnInit {
 
-  constructor() { }
+    @Input() character;
+    @Output() sideAssigned = new EventEmitter<{ name: string, side: string }>();
 
-  ngOnInit() {
-  }
+    constructor() { }
+
+    ngOnInit() {
+    }
+
+    onAssign(side) {
+        this.sideAssigned.emit({ name: this.character.name, side: side });
+    }
 
 }
