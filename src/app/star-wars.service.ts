@@ -12,7 +12,7 @@ export class StarWarsService {
 
     constructor(logService: LogService) {
         this.logService = logService;
-     }
+    }
 
     getCharacters(chosenList) {
         if (chosenList === 'all') {
@@ -24,11 +24,25 @@ export class StarWarsService {
         });
     }
 
-    onSideChosen(charInfo) {
-        const index = this.characters.findIndex((char) => {
+    getCharacterIndex(charInfo) {
+        return this.characters.findIndex((char) => {
             return char.name === charInfo.name;
         });
+    }
+
+    onSideChosen(charInfo) {
+        const index = this.getCharacterIndex(charInfo);
         this.characters[index].side = charInfo.side;
         this.logService.writeLog('Changed side of ' + charInfo.name + '. New side: ' + charInfo.side);
+    }
+
+    addCharacter(name, side) {
+        const submittedChar = { name: name, side: side };
+        const index = this.getCharacterIndex(submittedChar);
+        if (index === -1) {
+            this.characters.push(submittedChar);
+        } else {
+            console.log('Character ' + name + ' already exists');
+        }
     }
 }
