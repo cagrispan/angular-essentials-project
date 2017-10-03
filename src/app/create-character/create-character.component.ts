@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { StarWarsService } from '../star-wars.service';
+import { LogService } from '../log.service';
 
 @Component({
     selector: 'app-create-character',
@@ -15,9 +16,11 @@ export class CreateCharacterComponent implements OnInit {
         { display: 'Dark', value: 'dark' }
     ];
     starWarsService: StarWarsService;
+    logService: LogService;
 
-    constructor(starWarsService: StarWarsService) {
+    constructor(starWarsService: StarWarsService, logService: LogService) {
         this.starWarsService = starWarsService;
+        this.logService = logService;
     }
 
     ngOnInit() {
@@ -25,7 +28,7 @@ export class CreateCharacterComponent implements OnInit {
 
     onSubmit(form) {
         if (form.invalid) {
-            console.log('This form is invalid.');
+            this.logService.writeLog('This form is invalid.');
         } else {
             this.starWarsService.addCharacter(form.value.name, form.value.side);
         }

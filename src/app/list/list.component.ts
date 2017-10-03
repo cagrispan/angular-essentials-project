@@ -19,9 +19,9 @@ export class ListComponent implements OnInit, OnDestroy {
     constructor(activetedRoute: ActivatedRoute, starWarsService: StarWarsService) {
         this.activetedRoute = activetedRoute;
         this.starWarsService = starWarsService;
-     }
+    }
 
-     ngOnInit() {
+    ngOnInit() {
         this.activetedRoute.params.subscribe(
             (params) => {
                 this.loadedSide = params.side;
