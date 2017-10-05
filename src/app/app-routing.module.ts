@@ -12,7 +12,7 @@ const routes = [
         ]
     },
     { path: 'new-character', loadChildren: './create-character/create-character.module#CreateCharacterModule' },
-    { path: '**', redirectTo: '/characters' }
+    { path: '**', redirectTo: '/characters/all' }
 ];
 
 @NgModule({
